@@ -52,6 +52,17 @@ class ContactBook:
         else:
             print("Invalid contact index!")
 
+    def search_contacts(self, name_query):
+        results = [c for c in self.contacts if name_query.lower() in c["name"].lower()]
+        if results:
+            for i, contact in enumerate(results, 1):
+                print(f"\nMatch #{i}")
+                print(f"Name: {contact['name']}")
+                print(f"Phone: {contact['phone']}")
+                print(f"Email: {contact['email']}")
+        else:
+            print("No contacts found matching the query.")
+
     def delete_contact(self, index):
         if 0 <= index < len(self.contacts):
             deleted = self.contacts.pop(index)
@@ -69,7 +80,8 @@ def main():
         print("2. View Contacts")
         print("3. Update Contact")
         print("4. Delete Contact")
-        print("5. Exit")
+        print("5. search Contact")
+        print("6. Exit")
 
         choice = input("\nEnter your choice (1-5): ")
 
@@ -96,6 +108,10 @@ def main():
             contact_book.delete_contact(index)
 
         elif choice == "5":
+            query = input("Enter name to search: ")
+            contact_book.search_contacts(query)
+
+        elif choice == "6":
             print("Goodbye!")
             break
 
