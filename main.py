@@ -7,9 +7,13 @@ class ContactBook:
         self.contacts = self.load_contacts()
 
     def load_contacts(self):
-        if os.path.exists(self.contacts_file):
-            with open(self.contacts_file, 'r') as file:
-                return json.load(file)
+        try:
+            if os.path.exists(self.contacts_file):
+                with open(self.contacts_file, 'r') as file:
+                    return json.load(file)
+        except json.JSONDecodeError:
+            print("Warning: contacts.json is corrupted. Starting with an empty contact list.")
+            return []
         return []
 
     def save_contacts(self):
@@ -58,7 +62,7 @@ class ContactBook:
 
 def main():
     contact_book = ContactBook()
-    
+
     while True:
         print("\n=== Contact Book Menu ===")
         print("1. Add Contact")
@@ -66,18 +70,18 @@ def main():
         print("3. Update Contact")
         print("4. Delete Contact")
         print("5. Exit")
-        
+
         choice = input("\nEnter your choice (1-5): ")
-        
+
         if choice == "1":
             name = input("Enter name: ")
             phone = input("Enter phone number: ")
             email = input("Enter email: ")
             contact_book.add_contact(name, phone, email)
-        
+
         elif choice == "2":
             contact_book.view_contacts()
-        
+
         elif choice == "3":
             contact_book.view_contacts()
             index = int(input("Enter contact number to update: ")) - 1
@@ -85,16 +89,16 @@ def main():
             phone = input("Enter new phone number: ")
             email = input("Enter new email: ")
             contact_book.update_contact(index, name, phone, email)
-        
+
         elif choice == "4":
             contact_book.view_contacts()
             index = int(input("Enter contact number to delete: ")) - 1
             contact_book.delete_contact(index)
-        
+
         elif choice == "5":
             print("Goodbye!")
             break
-        
+
         else:
             print("Invalid choice! Please try again.")
 
