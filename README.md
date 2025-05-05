@@ -12,6 +12,7 @@ A simple command-line contact book application that allows you to manage your co
 - View all contacts
 - Update existing contacts
 - Delete contacts
+- Search contacts
 - Data persistence using JSON file storage
 
 ## Usage
