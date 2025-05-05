@@ -83,7 +83,7 @@ def main():
         print("5. search Contact")
         print("6. Exit")
 
-        choice = input("\nEnter your choice (1-5): ")
+        choice = input("\nEnter your choice (1-6): ")
 
         if choice == "1":
             name = input("Enter name: ")
