@@ -17,3 +17,6 @@ A simple command-line contact book application that allows you to manage your co
 ## Usage
 
 1. Run the application:
+```bash
+python main.py
+```
